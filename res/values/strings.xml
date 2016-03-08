@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">my_task</string>
+    <string name="title_item_detail">Item Detail</string>
+    <string name="title_test">title name</string>
+    
+    <string name="quick">快捷</string>
+    <string name="complete">完成</string>
+
+</resources>

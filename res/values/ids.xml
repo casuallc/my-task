@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 添加任务 -->
+    <item type="id" name="task_add_quick"></item>
+    <item type="id" name="task_add_title"></item>
+    <item type="id" name="task_add_complete"></item>
+    
+    <!--  -->
+    <item type="id" name="day_task_add"></item>
+    <item type="id" name="day_task_tasklist"></item>
+    <item type="id" name="day_task_days_task_cost"></item>
+    <item type="id" name="day_task_task_name"></item>
+    <item type="id" name="day_task_task_startday"></item>
+    <item type="id" name="day_task_task_endday"></item>
+</resources>
