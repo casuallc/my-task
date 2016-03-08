@@ -4,6 +4,14 @@
     <item type="id" name="task_add_quick"></item>
     <item type="id" name="task_add_title"></item>
     <item type="id" name="task_add_complete"></item>
+    <item type="id" name="task_add_add"></item>
+    <item type="id" name="task_add_tasklist"></item>
+    <item type="id" name="task_add_days_task_cost"></item>
+    <item type="id" name="task_add_task_name"></item>
+    <item type="id" name="task_add_task_startday"></item>
+    <item type="id" name="task_add_task_content"></item>
+    <item type="id" name="task_add_task_needs"></item>
+    <item type="id" name="task_add_task_endday"></item>
     
     <!--  -->
     <item type="id" name="day_task_add"></item>
@@ -11,5 +19,7 @@
     <item type="id" name="day_task_days_task_cost"></item>
     <item type="id" name="day_task_task_name"></item>
     <item type="id" name="day_task_task_startday"></item>
+    <item type="id" name="day_task_task_content"></item>
+    <item type="id" name="day_task_task_needs"></item>
     <item type="id" name="day_task_task_endday"></item>
 </resources>

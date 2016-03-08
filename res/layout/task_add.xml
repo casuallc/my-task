@@ -2,34 +2,66 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="horizontal">
     
-	<LinearLayout android:layout_width="match_parent"
-	    android:layout_height="60dp"
-	    android:orientation="horizontal"
-	    android:background="@color/titlebar_bg">
-	    
-	    <Button android:id="@id/task_add_quick"
-	        android:layout_width="60dp"
-	        android:layout_height="match_parent"
-	        android:gravity="center"
-	        android:text="@string/quick"/>
-	    
-	    <TextView android:id="@id/task_add_title"
-	        android:layout_width="0dp"
-	        android:layout_weight="1"
-	        android:layout_height="match_parent"
-	        android:gravity="center"
-	        android:textSize="18sp"
-	        android:text="@string/title_test"/>
-	    
-	    <Button android:id="@id/task_add_complete"
-	        android:layout_width="60dp"
-	        android:layout_height="match_parent"
-	        android:gravity="center"
-	        android:text="@string/complete"/>"
-	    
+    <View android:layout_width="10dp" android:layout_height="match_parent" android:background="@color/titlebar_bg"/>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    
+		<EditText android:id="@id/task_add_task_name"
+		    android:layout_width="match_parent"
+		    android:layout_height="30dp"
+		    android:background="@null"
+		    android:hint="@string/task_name"
+		    android:layout_margin="10dp"/>
+		<View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/titlebar_bg"/>
+		
+		<EditText android:id="@id/task_add_task_startday"
+		    android:layout_width="match_parent"
+		    android:layout_height="30dp"
+		    android:background="@null"
+		    android:hint="@string/task_startday"
+		    android:layout_margin="10dp"/>
+		<View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/titlebar_bg"/>
+		
+		<EditText android:id="@id/task_add_task_content"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:background="@null"
+		    android:hint="@string/task_content"
+		    android:minLines="4"
+		    android:gravity="top"
+		    android:layout_margin="10dp"/>
+		<View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/titlebar_bg"/>
+		
+	    <EditText android:id="@id/task_add_task_needs"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:background="@null"
+		    android:hint="@string/task_needs"
+		    android:minLines="2"
+		    android:gravity="top"
+		    android:layout_margin="10dp"/>
+		<View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/titlebar_bg"/>
+		
+		<EditText android:id="@id/task_add_task_endday"
+		    android:layout_width="match_parent"
+		    android:layout_height="30dp"
+		    android:background="@null"
+		    android:hint="@string/task_endday"
+		    android:layout_margin="10dp"/>
+		<View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/titlebar_bg"/>
+		
+		<Button android:id="@id/task_add_complete"
+		    android:layout_width="match_parent"
+		    android:layout_height="50dp"
+		    android:gravity="center"
+		    android:background="@null"
+		    android:text="@string/complete"/>
+		<View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/titlebar_bg"/>
+		
 	</LinearLayout>
-    
-    
 </LinearLayout>
