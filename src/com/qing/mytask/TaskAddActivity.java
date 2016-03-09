@@ -1,11 +1,7 @@
 package com.qing.mytask;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.UUID;
 
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,8 +10,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.qing.mytask.base.BaseActivity;
+import com.qing.mytask.dao.TaskDao;
+import com.qing.mytask.dao.TaskDaoI;
+import com.qing.mytask.model.Task;
 import com.qing.saq.anno.CView;
 import com.qing.saq.anno.Event;
+import com.qing.saq.jdbc.SQL;
 
 public class TaskAddActivity extends BaseActivity {
 	@CView(id=R.id.task_add_quick)
@@ -64,34 +64,48 @@ public class TaskAddActivity extends BaseActivity {
 		
 	}
 	
+	/**
+	 * 
+	 */
 	void save() {
-		SQLiteOpenHelper helper = new SQLiteOpenHelper(this, "mytask.db", null, 1) {
-			
-			@Override
-			public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-				
-			}
-			
-			@Override
-			public void onCreate(SQLiteDatabase db) {
-				db.execSQL("CREATE TABLE TASK (ID VARCHAR(32), NAME VARCHAR(100), STARTDAY BIGINT, CONTENT TEXT, NEEDS VARCHAR(200), ENDDAY BIGINT, CREATE_TIME BIGINT)");
-			}
-		};
+		SQL.context = getApplicationContext();
+		TaskDaoI dao = new TaskDao();
+		Task task = new Task();
+		task.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+		task.setName(taskNameEt.getText().toString());
+		task.setStartday(Long.valueOf(taskStartdayEt.getText().toString()));
+		task.setContent(taskContentEt.getText().toString());
+		task.setNeeds(taskNeedsEt.getText().toString());
+		task.setEndday(Long.valueOf(taskEnddayEt.getText().toString()));
+		dao.add(task);
 		
-		SQLiteDatabase db = helper.getWritableDatabase();
-		db.execSQL("DROP TABLE TASK");
-		db.execSQL("CREATE TABLE TASK (ID VARCHAR(32), NAME VARCHAR(100), STARTDAY BIGINT, CONTENT TEXT, NEEDS VARCHAR(200), ENDDAY BIGINT, CREATE_TIME BIGINT)");
-		
-		SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
-		db.execSQL("INSERT INTO TASK (ID, NAME, STARTDAY, CONTENT, NEEDS, ENDDAY, CREATE_TIME) VALUES(?, ?, ?, ?, ?, ?, ?)", 
-				new Object[]{UUID.randomUUID().toString().replaceAll("-", ""), 
-				taskNameEt.getText().toString(), 
-				Long.valueOf(taskStartdayEt.getText().toString()),
-				taskNeedsEt.getText().toString(),
-				Long.valueOf(taskEnddayEt.getText().toString()),
-				format.format(new Date())
-				});
-		
-		db.close();
+//		SQLiteOpenHelper helper = new SQLiteOpenHelper(this, "mytask.db", null, 1) {
+//			
+//			@Override
+//			public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+//				
+//			}
+//			
+//			@Override
+//			public void onCreate(SQLiteDatabase db) {
+//				db.execSQL("CREATE TABLE TASK (ID VARCHAR(32), NAME VARCHAR(100), STARTDAY BIGINT, CONTENT TEXT, NEEDS VARCHAR(200), ENDDAY BIGINT, CREATE_TIME BIGINT)");
+//			}
+//		};
+//		
+//		SQLiteDatabase db = helper.getWritableDatabase();
+//		db.execSQL("DROP TABLE TASK");
+//		db.execSQL("CREATE TABLE TASK (ID VARCHAR(32), NAME VARCHAR(100), STARTDAY BIGINT, CONTENT TEXT, NEEDS VARCHAR(200), ENDDAY BIGINT, CREATE_TIME BIGINT)");
+//		
+//		SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss", Locale.ENGLISH);
+//		db.execSQL("INSERT INTO TASK (ID, NAME, STARTDAY, CONTENT, NEEDS, ENDDAY, CREATE_TIME) VALUES(?, ?, ?, ?, ?, ?, ?)", 
+//				new Object[]{UUID.randomUUID().toString().replaceAll("-", ""), 
+//				taskNameEt.getText().toString(), 
+//				Long.valueOf(taskStartdayEt.getText().toString()),
+//				taskNeedsEt.getText().toString(),
+//				Long.valueOf(taskEnddayEt.getText().toString()),
+//				format.format(new Date())
+//				});
+//		
+//		db.close();
 	}
 }
