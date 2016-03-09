@@ -1,6 +1,5 @@
 package com.qing.mytask;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Intent;
@@ -17,10 +16,12 @@ import android.widget.Toast;
 
 import com.qing.mytask.base.BaseActivity;
 import com.qing.mytask.base.MyAdapter;
+import com.qing.mytask.dao.TaskDao;
 import com.qing.mytask.model.Task;
 import com.qing.saq.anno.CView;
 import com.qing.saq.anno.Event;
 import com.qing.saq.anno.EventType;
+import com.qing.saq.jdbc.SQL;
 
 public class DayTaskActivity extends BaseActivity {
 	
@@ -42,7 +43,9 @@ public class DayTaskActivity extends BaseActivity {
 	@CView(id=R.id.day_task_days_task_cost)
 	private TextView daysTaskCostTv;
 	
-	private TaskListAdapter tasklistAdapter = new TaskListAdapter();
+	private TaskListAdapter tasklistAdapter;
+	
+	private List<Task> taskList;
 	
 	@Event(name="taskListLv", type=EventType.LV_ITEM_CLICK)
 	private OnItemClickListener onTaskListLvItemClickListener = new OnItemClickListener() {
@@ -71,21 +74,23 @@ public class DayTaskActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.day_task);
 		
+		SQL.context = getApplicationContext();
 		getSaq().registe(this, getWindow().getDecorView()).init();
+		getTaskList();
+		tasklistAdapter = new TaskListAdapter();
 		taskListLv.setAdapter(tasklistAdapter);
 	}
 	
+	private TaskDao dao = new TaskDao();
+	
+	void getTaskList() {
+		taskList = dao.list(new Task());
+	}
+	
 	class TaskListAdapter extends MyAdapter {
-		private List<Task> list;
+		private List<Task> list = taskList;
 		
 		public TaskListAdapter() {
-			list = new ArrayList<Task>();
-			Task object = new Task();
-			object.setName("");
-			object.setDayscost(10);
-			object.setStatus(1);
-			object.setStartday(20160308);
-			list.add(object);
 		}
 		
 		@Override

@@ -7,10 +7,8 @@
     <Button android:id="@id/day_task_add"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:text="添加"
         android:gravity="center"
-        android:background="@null"
-        />
+        android:background="@drawable/task_add_bg"/>
 
     <ListView android:id="@id/day_task_tasklist"
         android:layout_width="match_parent"

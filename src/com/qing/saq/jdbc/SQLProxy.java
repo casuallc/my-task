@@ -19,9 +19,9 @@ public class SQLProxy implements InvocationHandler {
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 		before();
-		method.invoke(sql, args);
+		Object result = method.invoke(sql, args);
 		after();
-		return null;
+		return result;
 	}
 
 }

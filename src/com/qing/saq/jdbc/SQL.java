@@ -18,6 +18,7 @@ public class SQL implements SQLI {
 	private SQLiteDatabase db;
 	
 	private List<String> createSql = new ArrayList<String>();
+	private List<String> upgradeSql = new ArrayList<String>();
 	
 	public boolean isOpen() {
 		return db == null ? false : db.isOpen();
@@ -25,13 +26,17 @@ public class SQL implements SQLI {
 	
 	@Override
 	public void open() {
-		createSql.add("CREATE OR REPLACE TABLE TASK (ID VARCHAR(32), NAME VARCHAR(100), STARTDAY BIGINT, CONTENT TEXT, NEEDS VARCHAR(200), ENDDAY BIGINT, CREATE_TIME BIGINT, STATUS INT)");
+		createSql.add("CREATE TABLE TASK (ID VARCHAR(32), NAME VARCHAR(100), STARTDAY BIGINT, CONTENT TEXT, NEEDS VARCHAR(200), ENDDAY BIGINT, CREATE_TIME BIGINT, STATUS INT)");
 		
-		SQLiteOpenHelper helper = new SQLiteOpenHelper(context, "mytask.db", null, 1) {
+		upgradeSql.add("DROP TABLE IF EXISTS TASK");
+		upgradeSql.add("CREATE TABLE TASK (ID VARCHAR(32), NAME VARCHAR(100), STARTDAY BIGINT, CONTENT TEXT, NEEDS VARCHAR(200), ENDDAY BIGINT, CREATE_TIME BIGINT, STATUS INT)");
+		SQLiteOpenHelper helper = new SQLiteOpenHelper(context, "mytask.db", null, 2) {
 			
 			@Override
 			public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-				
+				for(String sql : upgradeSql) {
+					db.execSQL(sql);
+				}
 			}
 			
 			@Override
@@ -102,7 +107,7 @@ public class SQL implements SQLI {
 				T obj = clazz.newInstance();
 				for(int i=0; i<fields.length; i++) {
 					Field f = fields[i];
-					int index = c.getColumnIndex(f.getName());
+					int index = c.getColumnIndex(f.getName().toUpperCase(Locale.ENGLISH));
 					if(index != -1) {
 						Object value = null;
 						Class type = f.getType();
@@ -113,7 +118,7 @@ public class SQL implements SQLI {
 						} else if(type == int.class) {
 							value = c.getInt(index);
 						}
-						setMethods[0].invoke(obj, value);
+						setMethods[i].invoke(obj, value);
 					}
 				}
 				result.add(obj);

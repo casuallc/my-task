@@ -8,7 +8,6 @@ import java.util.Locale;
 
 import com.qing.mytask.model.Task;
 import com.qing.saq.bean.SQLBean;
-import com.qing.saq.jdbc.SQL;
 import com.qing.saq.jdbc.SQLI;
 import com.qing.saq.jdbc.SQLProxy;
 
@@ -16,7 +15,7 @@ public class TaskDao implements TaskDaoI {
 	private SQLI sql;
 	
 	public TaskDao() {
-		sql = (SQL)Proxy.newProxyInstance(getClass().getClassLoader(), new Class[]{SQLI.class}, new SQLProxy());
+		sql = (SQLI)Proxy.newProxyInstance(getClass().getClassLoader(), new Class[]{SQLI.class}, new SQLProxy());
 	}
 
 	@Override
