@@ -52,7 +52,11 @@ public class DayTaskActivity extends BaseActivity {
 
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-			Toast.makeText(DayTaskActivity.this, ((TextView)view.findViewById(R.id.day_task_task_name)).getText(), Toast.LENGTH_SHORT).show();
+			Intent intent = new Intent();
+			intent.putExtra("taskId", taskList.get(position).getId());
+			intent.setClass(DayTaskActivity.this, TaskAddActivity.class);
+			startActivity(intent);
+//			Toast.makeText(DayTaskActivity.this, ((TextView)view.findViewById(R.id.day_task_task_name)).getText(), Toast.LENGTH_SHORT).show();
 		}
 	};
 	

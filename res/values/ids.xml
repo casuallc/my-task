@@ -22,4 +22,8 @@
     <item type="id" name="day_task_task_content"></item>
     <item type="id" name="day_task_task_needs"></item>
     <item type="id" name="day_task_task_endday"></item>
+    
+    <item type="id" name="day_task_edit_task_name"></item>
+    <item type="id" name="day_task_edit_task_content"></item>
+    <item type="id" name="day_task_edit_complete"></item>
 </resources>

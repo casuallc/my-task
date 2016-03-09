@@ -30,7 +30,8 @@ public class SQL implements SQLI {
 		
 		upgradeSql.add("DROP TABLE IF EXISTS TASK");
 		upgradeSql.add("CREATE TABLE TASK (ID VARCHAR(32), NAME VARCHAR(100), STARTDAY BIGINT, CONTENT TEXT, NEEDS VARCHAR(200), ENDDAY BIGINT, CREATE_TIME BIGINT, STATUS INT)");
-		SQLiteOpenHelper helper = new SQLiteOpenHelper(context, "mytask.db", null, 2) {
+		upgradeSql.add("CREATE TABLE TASK_DAY (ID VARCHAR(32), TASK_ID VARCHAR(32), CONTENT TEXT, DAY BIGINT)");
+		SQLiteOpenHelper helper = new SQLiteOpenHelper(context, "mytask.db", null, 3) {
 			
 			@Override
 			public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
