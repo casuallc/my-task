@@ -12,7 +12,7 @@ public class Task extends Model {
 	private int status;
 	private String needs;
 	private long dayscost;
-
+	
 	public String getId() {
 		return id;
 	}

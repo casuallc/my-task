@@ -20,16 +20,16 @@ public class DayTaskDao {
 	public DayTask query(DayTask task) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd", Locale.ENGLISH);
 		SQLBean<DayTask> bean = new SQLBean<DayTask>(DayTask.class);
-		bean.getSql().append("SELECT ID FROM DAY_TASK");
+		bean.getSql().append("SELECT ID, CONTENT, TASK_ID, DAY FROM DAY_TASK");
 		bean.getSql().append(" WHERE TASK_ID = ? AND DAY = ?");
-		bean.addArgs(task.getId()).addArgs(format.format(new Date()));;
+		bean.addArgs(task.getTaskId()).addArgs(format.format(new Date()));;
 		return sql.query(bean);
 	}
 	
 	public DayTask add(DayTask task) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd", Locale.ENGLISH);
 		SQLBean<DayTask> bean = new SQLBean<DayTask>(DayTask.class);
-		bean.getSql().append("INSERT INTO DAY_TASK(ID, TASK_ID, STARTDAY, CONTENT, DAY) VALUES (?, ?, ?, ?)");
+		bean.getSql().append("INSERT INTO DAY_TASK(ID, TASK_ID, CONTENT, DAY) VALUES (?, ?, ?, ?)");
 		bean.addArgs(task.getId()).addArgs(task.getTaskId()).addArgs(task.getContent()).addArgs(format.format(new Date()));
 		sql.add(bean);
 		return task;
@@ -37,9 +37,21 @@ public class DayTaskDao {
 	
 	public DayTask update(DayTask task) {
 		SQLBean<DayTask> bean = new SQLBean<DayTask>(DayTask.class);
-		bean.getSql().append("UPDATE DAY_TASK SET CONTENT=? WHERE TASK_ID = ?");
+		bean.getSql().append("UPDATE DAY_TASK SET CONTENT=? WHERE ID = ?");
 		bean.addArgs(task.getContent()).addArgs(task.getId());
 		sql.update(bean);
 		return task;
 	}
+	
+	public DayTask queryDayTask(String taskId, String day) {
+		if(day == null) {
+			day = new SimpleDateFormat("yyyyMMdd", Locale.ENGLISH).format(new Date());
+		}
+		SQLBean<DayTask> bean = new SQLBean<DayTask>(DayTask.class);
+		bean.getSql().append("SELECT ID, CONTENT, TASK_ID TASKID, DAY FROM DAY_TASK");
+		bean.getSql().append(" WHERE TASK_ID = ? AND DAY = ?");
+		bean.addArgs(taskId).addArgs(day);
+		return sql.query(bean);
+	}
+	
 }

@@ -44,14 +44,7 @@ public class TaskAddActivity extends BaseActivity {
 
 		@Override
 		public void onClick(View v) {
-			StringBuilder sb = new StringBuilder();
-			sb.append(taskNameEt.getText().toString()).append("/n");
-			sb.append(taskStartdayEt.getText().toString()).append("/n");
-			sb.append(taskContentEt.getText().toString()).append("/n");
-			sb.append(taskNeedsEt.getText().toString()).append("/n");
-			sb.append(taskEnddayEt.getText().toString()).append("/n");
-			Toast.makeText(TaskAddActivity.this, "完成保存"+sb.toString(), Toast.LENGTH_SHORT).show();
-			
+			Toast.makeText(getApplicationContext(), "已保存", Toast.LENGTH_SHORT).show();
 			save();
 		}
 	};
@@ -79,33 +72,5 @@ public class TaskAddActivity extends BaseActivity {
 		task.setEndday(Long.valueOf(taskEnddayEt.getText().toString()));
 		dao.add(task);
 		
-//		SQLiteOpenHelper helper = new SQLiteOpenHelper(this, "mytask.db", null, 1) {
-//			
-//			@Override
-//			public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-//				
-//			}
-//			
-//			@Override
-//			public void onCreate(SQLiteDatabase db) {
-//				db.execSQL("CREATE TABLE TASK (ID VARCHAR(32), NAME VARCHAR(100), STARTDAY BIGINT, CONTENT TEXT, NEEDS VARCHAR(200), ENDDAY BIGINT, CREATE_TIME BIGINT)");
-//			}
-//		};
-//		
-//		SQLiteDatabase db = helper.getWritableDatabase();
-//		db.execSQL("DROP TABLE TASK");
-//		db.execSQL("CREATE TABLE TASK (ID VARCHAR(32), NAME VARCHAR(100), STARTDAY BIGINT, CONTENT TEXT, NEEDS VARCHAR(200), ENDDAY BIGINT, CREATE_TIME BIGINT)");
-//		
-//		SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss", Locale.ENGLISH);
-//		db.execSQL("INSERT INTO TASK (ID, NAME, STARTDAY, CONTENT, NEEDS, ENDDAY, CREATE_TIME) VALUES(?, ?, ?, ?, ?, ?, ?)", 
-//				new Object[]{UUID.randomUUID().toString().replaceAll("-", ""), 
-//				taskNameEt.getText().toString(), 
-//				Long.valueOf(taskStartdayEt.getText().toString()),
-//				taskNeedsEt.getText().toString(),
-//				Long.valueOf(taskEnddayEt.getText().toString()),
-//				format.format(new Date())
-//				});
-//		
-//		db.close();
 	}
 }

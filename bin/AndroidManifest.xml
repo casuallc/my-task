@@ -24,6 +24,7 @@
         </activity>
         
         <activity android:name="com.qing.mytask.TaskAddActivity"></activity>
+        <activity android:name="com.qing.mytask.DayTaskEditActivity"></activity>
     </application>
 
 </manifest>

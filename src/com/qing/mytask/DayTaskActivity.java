@@ -12,7 +12,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.qing.mytask.base.BaseActivity;
 import com.qing.mytask.base.MyAdapter;
@@ -54,20 +53,33 @@ public class DayTaskActivity extends BaseActivity {
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 			Intent intent = new Intent();
 			intent.putExtra("taskId", taskList.get(position).getId());
-			intent.setClass(DayTaskActivity.this, TaskAddActivity.class);
+			intent.putExtra("taskName", taskList.get(position).getName());
+			intent.setClass(DayTaskActivity.this, DayTaskEditActivity.class);
 			startActivity(intent);
-//			Toast.makeText(DayTaskActivity.this, ((TextView)view.findViewById(R.id.day_task_task_name)).getText(), Toast.LENGTH_SHORT).show();
 		}
 	};
 	
 	@Event(name="addTaskBt")
-	private OnClickListener onAddTaskBt = new OnClickListener() {
+	private OnClickListener onAddTaskBtCL = new OnClickListener() {
 		
 		@Override
 		public void onClick(View v) {
 			Intent intent = new Intent();
 			intent.setClass(getApplicationContext(), TaskAddActivity.class);
 			startActivity(intent);
+		}
+	};
+	
+	@CView(id=R.id.day_task_refresh)
+	private Button taskRefreshBt;
+	@Event(name="taskRefreshBt")
+	private OnClickListener onTaskRefreshBtCL = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			taskList = dao.list(new Task());
+			tasklistAdapter.setData(taskList);
+			tasklistAdapter.notifyDataSetChanged();
 		}
 	};
 	
@@ -80,21 +92,34 @@ public class DayTaskActivity extends BaseActivity {
 		
 		SQL.context = getApplicationContext();
 		getSaq().registe(this, getWindow().getDecorView()).init();
-		getTaskList();
-		tasklistAdapter = new TaskListAdapter();
-		taskListLv.setAdapter(tasklistAdapter);
+		init();
+	}
+	
+	@Override
+	protected void onRestart() {
+		super.onRestart();
+		taskList = dao.list(new Task());
+		tasklistAdapter.setData(taskList);
+		tasklistAdapter.notifyDataSetChanged();
 	}
 	
 	private TaskDao dao = new TaskDao();
 	
-	void getTaskList() {
+	void init() {
+		tasklistAdapter = new TaskListAdapter();
 		taskList = dao.list(new Task());
+		tasklistAdapter.setData(taskList);
+		taskListLv.setAdapter(tasklistAdapter);
 	}
 	
 	class TaskListAdapter extends MyAdapter {
-		private List<Task> list = taskList;
+		private List<Task> list;
 		
 		public TaskListAdapter() {
+		}
+		
+		public void setData(List<Task> list) {
+			this.list = list;
 		}
 		
 		@Override

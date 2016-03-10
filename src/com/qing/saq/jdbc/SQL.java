@@ -28,10 +28,11 @@ public class SQL implements SQLI {
 	public void open() {
 		createSql.add("CREATE TABLE TASK (ID VARCHAR(32), NAME VARCHAR(100), STARTDAY BIGINT, CONTENT TEXT, NEEDS VARCHAR(200), ENDDAY BIGINT, CREATE_TIME BIGINT, STATUS INT)");
 		
-		upgradeSql.add("DROP TABLE IF EXISTS TASK");
-		upgradeSql.add("CREATE TABLE TASK (ID VARCHAR(32), NAME VARCHAR(100), STARTDAY BIGINT, CONTENT TEXT, NEEDS VARCHAR(200), ENDDAY BIGINT, CREATE_TIME BIGINT, STATUS INT)");
-		upgradeSql.add("CREATE TABLE TASK_DAY (ID VARCHAR(32), TASK_ID VARCHAR(32), CONTENT TEXT, DAY BIGINT)");
-		SQLiteOpenHelper helper = new SQLiteOpenHelper(context, "mytask.db", null, 3) {
+//		upgradeSql.add("DROP TABLE IF EXISTS TASK");
+//		upgradeSql.add("CREATE TABLE TASK (ID VARCHAR(32), NAME VARCHAR(100), STARTDAY BIGINT, CONTENT TEXT, NEEDS VARCHAR(200), ENDDAY BIGINT, CREATE_TIME BIGINT, STATUS INT)");
+		upgradeSql.add("DROP TABLE IF EXISTS TASK_DAY");
+		upgradeSql.add("CREATE TABLE DAY_TASK (ID VARCHAR(32), TASK_ID VARCHAR(32), CONTENT TEXT, DAY BIGINT)");
+		SQLiteOpenHelper helper = new SQLiteOpenHelper(context, "mytask.db", null, 4) {
 			
 			@Override
 			public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

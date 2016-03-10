@@ -7,6 +7,16 @@ public class DayTask extends Model {
 	private String id;
 	private String taskId;
 	private String content;
+	
+	private long day;
+	
+	public void setDay(long day) {
+		this.day = day;
+	}
+	
+	public long getDay() {
+		return day;
+	}
 
 	public String getId() {
 		return id;
