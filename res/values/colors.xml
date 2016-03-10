@@ -3,4 +3,6 @@
 
     <color name="titlebar_bg">#5fc9fa</color>
     <color name="main_bg">#F4EFEF</color>
+    
+    <color name="gray">#EDEDED</color>
 </resources>

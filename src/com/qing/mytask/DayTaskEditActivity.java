@@ -12,17 +12,20 @@ import android.widget.Toast;
 
 import com.qing.mytask.base.BaseActivity;
 import com.qing.mytask.dao.DayTaskDao;
+import com.qing.mytask.dao.TaskDao;
 import com.qing.mytask.model.DayTask;
+import com.qing.mytask.model.Task;
 import com.qing.saq.anno.CView;
 import com.qing.saq.anno.Event;
+import com.qing.saq.utils.DateUtils;
 
 public class DayTaskEditActivity extends BaseActivity {
 
 	@CView(id=R.id.day_task_edit_task_name)
 	private TextView taskNameTv;
 	
-	@CView(id=R.id.day_task_edit_task_content)
-	private EditText taskContentEt;
+	@CView(id=R.id.day_task_edit_task_daycontent)
+	private EditText taskDayContentEt;
 	
 	@CView(id=R.id.day_task_edit_complete)
 	private Button taskCompleteBt;
@@ -39,12 +42,12 @@ public class DayTaskEditActivity extends BaseActivity {
 				task = new DayTask();
 				task.setTaskId(taskId);
 				task.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-				task.setContent(taskContentEt.getText().toString());
+				task.setContent(taskDayContentEt.getText().toString());
 				dao.add(task);
 				Toast.makeText(getApplicationContext(), "已保存", Toast.LENGTH_SHORT).show();
 			} else {
 				task.setId(task.getId());
-				task.setContent(taskContentEt.getText().toString());
+				task.setContent(taskDayContentEt.getText().toString());
 				dao.update(task);
 				Toast.makeText(getApplicationContext(), "已更新", Toast.LENGTH_SHORT).show();
 			}
@@ -52,6 +55,18 @@ public class DayTaskEditActivity extends BaseActivity {
 	};
 
 	private String taskId;
+	
+	@CView(id=R.id.day_task_edit_task_startday)
+	private TextView taskStartdayTv;
+	
+	@CView(id=R.id.day_task_edit_task_endday)
+	private TextView taskEnddayTv;
+	
+	@CView(id=R.id.day_task_edit_task_content)
+	private TextView taskContentTv;
+	
+	@CView(id=R.id.day_task_edit_task_needs)
+	private TextView taskNeedsTv;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +76,16 @@ public class DayTaskEditActivity extends BaseActivity {
 		getSaq().registe(this, getWindow().getDecorView()).init();
 		taskId = getIntent().getStringExtra("taskId");
 		taskNameTv.setText(getIntent().getStringExtra("taskName"));
-		DayTask task = dao.queryDayTask(taskId, null);
-		if(task != null) {
-			taskContentEt.setText(task.getContent());
+		DayTask dayTask = dao.queryDayTask(taskId, null);
+		if(dayTask != null) {
+			taskDayContentEt.setText(dayTask.getContent());
 		}
+		
+		// 初始化任务信息
+		Task task = new TaskDao().queryById(taskId);
+		taskStartdayTv.setText(DateUtils.formatDate(task.getStartday(), null));
+		taskEnddayTv.setText(DateUtils.formatDate(task.getEndday(), null));
+		taskContentTv.setText(task.getContent());
+		taskNeedsTv.setText(task.getNeeds());
 	}
 }

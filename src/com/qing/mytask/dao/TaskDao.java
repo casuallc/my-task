@@ -28,6 +28,13 @@ public class TaskDao implements TaskDaoI {
 	}
 	
 	@Override
+	public Task queryById(String id) {
+		Task task = new Task();
+		task.setId(id);
+		return query(task);
+	}
+	
+	@Override
 	public List<Task> list(Task task) {
 		SQLBean<Task> bean = new SQLBean<Task>(Task.class);
 		bean.getSql().append("SELECT ID, NAME, STARTDAY, CONTENT, NEEDS, ENDDAY, CREATE_TIME FROM TASK");

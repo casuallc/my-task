@@ -1,5 +1,6 @@
 package com.qing.mytask;
 
+import java.util.Date;
 import java.util.UUID;
 
 import android.os.Bundle;
@@ -16,6 +17,8 @@ import com.qing.mytask.model.Task;
 import com.qing.saq.anno.CView;
 import com.qing.saq.anno.Event;
 import com.qing.saq.jdbc.SQL;
+import com.qing.saq.utils.DateUtils;
+import com.qing.saq.utils.StringUtils;
 
 public class TaskAddActivity extends BaseActivity {
 	@CView(id=R.id.task_add_quick)
@@ -44,7 +47,6 @@ public class TaskAddActivity extends BaseActivity {
 
 		@Override
 		public void onClick(View v) {
-			Toast.makeText(getApplicationContext(), "已保存", Toast.LENGTH_SHORT).show();
 			save();
 		}
 	};
@@ -55,12 +57,14 @@ public class TaskAddActivity extends BaseActivity {
 		setContentView(R.layout.task_add);
 		getSaq().registe(this, getWindow().getDecorView()).init();
 		
+		taskStartdayEt.setText(DateUtils.formatDate(null, null));
 	}
 	
-	/**
-	 * 
-	 */
+	/** 保存任务信息 */
 	void save() {
+		if(!check()) {
+			return;
+		}
 		SQL.context = getApplicationContext();
 		TaskDaoI dao = new TaskDao();
 		Task task = new Task();
@@ -71,6 +75,26 @@ public class TaskAddActivity extends BaseActivity {
 		task.setNeeds(taskNeedsEt.getText().toString());
 		task.setEndday(Long.valueOf(taskEnddayEt.getText().toString()));
 		dao.add(task);
+		Toast.makeText(getApplicationContext(), "已保存", Toast.LENGTH_SHORT).show();
+	}
+	
+	/** 校验输入 */
+	boolean check() {
+		if(taskNameEt.getText().toString().length() > 100) {
+			Toast.makeText(this, "名称不超过100个字符！", Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		if(taskNeedsEt.getText().toString().length() > 100) {
+			Toast.makeText(this, "所需物品不超过200个字符！", Toast.LENGTH_SHORT).show();
+			return false;
+		}
 		
+		if(StringUtils.isEmpty(taskStartdayEt.getText().toString())) {
+			taskStartdayEt.setText(DateUtils.formatDate(null, null));
+		}
+		if(StringUtils.isEmpty(taskEnddayEt.getText().toString())) {
+			taskEnddayEt.setText(DateUtils.formatDate(DateUtils.afterDate(new Date(), 10), null));
+		}
+		return true;
 	}
 }

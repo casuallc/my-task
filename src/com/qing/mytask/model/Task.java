@@ -1,6 +1,12 @@
 package com.qing.mytask.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 import com.qing.mytask.base.Model;
+import com.qing.saq.utils.DateUtils;
 
 public class Task extends Model {
 
@@ -70,6 +76,9 @@ public class Task extends Model {
 	}
 
 	public long getDayscost() {
+		if(dayscost == 0) {
+			dayscost = DateUtils.days(startday, new Date());
+		}
 		return dayscost;
 	}
 

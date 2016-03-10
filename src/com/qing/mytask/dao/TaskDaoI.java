@@ -14,4 +14,6 @@ public interface TaskDaoI {
 
 	public abstract Task update(Task task);
 
+	public abstract Task queryById(String id);
+
 }
