@@ -32,7 +32,13 @@
     <item type="id" name="day_task_edit_task_needs"></item>
     <item type="id" name="day_task_edit_task_endday"></item>
     <item type="id" name="day_task_edit_task_content"></item>
+    <item type="id" name="day_task_edit_per_task_hist"></item>
+    <item type="id" name="day_task_edit_titlebar"></item>
     
     
     <item type="id" name="title_bar_name"></item>
+    
+    <item type="id" name="per_task_hist_task_name"></item>
+    <item type="id" name="per_task_hist_daytasklist"></item>
+    <item type="id" name="per_task_hist_daytaskcontent"></item>
 </resources>

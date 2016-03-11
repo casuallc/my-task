@@ -3,6 +3,7 @@ package com.qing.mytask.dao;
 import java.lang.reflect.Proxy;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import com.qing.mytask.model.DayTask;
@@ -54,4 +55,11 @@ public class DayTaskDao {
 		return sql.query(bean);
 	}
 	
+	public List<DayTask> listDayTaskByTaskid(String taskId) {
+		SQLBean<DayTask> bean = new SQLBean<DayTask>(DayTask.class);
+		bean.getSql().append("SELECT ID, CONTENT, TASK_ID TASKID, DAY FROM DAY_TASK");
+		bean.getSql().append(" WHERE TASK_ID = ? ORDER BY DAY DESC");
+		bean.addArgs(taskId);
+		return sql.list(bean);
+	}
 }

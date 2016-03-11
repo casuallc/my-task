@@ -2,6 +2,7 @@ package com.qing.mytask;
 
 import java.util.UUID;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -68,12 +69,28 @@ public class DayTaskEditActivity extends BaseActivity {
 	@CView(id=R.id.day_task_edit_task_needs)
 	private TextView taskNeedsTv;
 	
+	@CView(id=R.id.day_task_edit_per_task_hist)
+	private Button perTaskHistBt;
+	
+	@Event(name="perTaskHistBt")
+	private OnClickListener onPerTaskHistBtCL = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			Intent intent = new Intent();
+			intent.putExtra("taskId", taskId);
+			intent.putExtra("taskName", getIntent().getStringExtra("taskName"));
+			intent.setClass(getApplicationContext(), PerTaskHistActivity.class);
+			startActivity(intent);
+		}
+	};
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.day_task_edit);
-		
 		getSaq().registe(this, getWindow().getDecorView()).init();
+		
 		taskId = getIntent().getStringExtra("taskId");
 		taskNameTv.setText(getIntent().getStringExtra("taskName"));
 		DayTask dayTask = dao.queryDayTask(taskId, null);
