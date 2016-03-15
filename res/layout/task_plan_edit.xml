@@ -8,10 +8,10 @@
     <View android:layout_width="10dp" android:layout_height="match_parent" android:background="@color/titlebar_bg"/>
     
     <RelativeLayout
-        android:id="@id/day_task_edit_titlebar"
+        android:id="@id/task_plan_edit_titlebar"
         android:layout_width="match_parent"
         android:layout_height="50dp">
-        <TextView android:id="@id/day_task_edit_task_name"
+        <TextView android:id="@id/task_plan_edit_task_name"
 		    android:layout_width="match_parent"
 		    android:layout_height="30dp"
 		    android:background="@null"
@@ -19,24 +19,11 @@
 		    android:layout_margin="10dp"
 		    android:gravity="center"/>
         
-        <Button android:id="@id/day_task_edit_per_task_hist"
-	        android:layout_width="50dp"
-	        android:layout_height="match_parent"
-	        android:layout_toStartOf="@id/day_task_edit_task_plan"
-	        android:gravity="center"
-	        android:background="@drawable/add"/>
-        
-        <Button android:id="@id/day_task_edit_task_plan"
-	        android:layout_width="50dp"
-	        android:layout_height="match_parent"
-	        android:gravity="center"
-	        android:layout_alignParentEnd="true"
-	        android:background="@drawable/add"/>
     </RelativeLayout>
     
     <ScrollView android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/day_task_edit_titlebar">
+        android:layout_below="@id/task_plan_edit_titlebar">
 
 		<LinearLayout
 	       	android:layout_width="match_parent"
@@ -45,71 +32,90 @@
 	       	android:orientation="vertical" >
 	       	<View android:layout_width="match_parent" android:layout_height="5dp" android:background="@color/titlebar_bg"/>
 		   
-			<EditText android:id="@id/day_task_edit_task_daycontent"
+			<EditText android:id="@id/task_plan_edit_plan_after0"
 			    android:layout_width="match_parent"
 			    android:layout_height="wrap_content"
 			    android:background="@null"
-			    android:hint="@string/task_content"
+			    android:hint="@string/today"
 			    android:minLines="4"
 			    android:maxLines="20"
 			    android:gravity="top"
 			    android:layout_margin="10dp"/>
 			<View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/titlebar_bg"/>
 			
-			<TextView android:id="@id/day_task_edit_task_plan" 
+			<EditText android:id="@id/task_plan_edit_plan_after1"
 			    android:layout_width="match_parent"
 			    android:layout_height="wrap_content"
-			    android:layout_marginTop="3dp"
-			    android:layout_marginStart="5dp"
-			    android:minLines="3"
-			    android:textSize="13sp"/>
+			    android:background="@null"
+			    android:hint="@string/day1after"
+			    android:minLines="4"
+			    android:maxLines="20"
+			    android:gravity="top"
+			    android:layout_margin="10dp"/>
 			<View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/titlebar_bg"/>
 			
-			<Button android:id="@id/day_task_edit_complete"
+			<EditText android:id="@id/task_plan_edit_plan_after2"
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:background="@null"
+			    android:hint="@string/day2after"
+			    android:minLines="4"
+			    android:maxLines="20"
+			    android:gravity="top"
+			    android:layout_margin="10dp"/>
+			<View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/titlebar_bg"/>
+			
+			<EditText android:id="@id/task_plan_edit_plan_after3"
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:background="@null"
+			    android:hint="@string/day3after"
+			    android:minLines="4"
+			    android:maxLines="20"
+			    android:gravity="top"
+			    android:layout_margin="10dp"/>
+			<View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/titlebar_bg"/>
+			
+			<EditText android:id="@id/task_plan_edit_plan_after4"
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:background="@null"
+			    android:hint="@string/day4after"
+			    android:minLines="4"
+			    android:maxLines="20"
+			    android:gravity="top"
+			    android:layout_margin="10dp"/>
+			<View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/titlebar_bg"/>
+			
+			<EditText android:id="@id/task_plan_edit_plan_after5"
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:background="@null"
+			    android:hint="@string/day5after"
+			    android:minLines="4"
+			    android:maxLines="20"
+			    android:gravity="top"
+			    android:layout_margin="10dp"/>
+			<View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/titlebar_bg"/>
+			
+			<EditText android:id="@id/task_plan_edit_plan_after6"
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:background="@null"
+			    android:hint="@string/day6after"
+			    android:minLines="4"
+			    android:maxLines="20"
+			    android:gravity="top"
+			    android:layout_margin="10dp"/>
+			<View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/titlebar_bg"/>
+			
+			<Button android:id="@id/task_plan_edit_save"
 			    android:layout_width="match_parent"
 			    android:layout_height="50dp"
 			    android:gravity="center"
 			    android:background="@null"
 			    android:text="@string/complete"/>
 			<View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/titlebar_bg"/>
-		
-			<TextView android:layout_width="match_parent"
-			    android:layout_height="30dp"
-			    android:text="@string/taskDetailInfo"
-			    android:gravity="center_vertical"
-			    android:layout_marginTop="3dp"
-			    android:layout_marginStart="5dp"
-			    android:textSize="13sp"/>
-			<View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/titlebar_bg"/>
-			
-			<TextView android:id="@id/day_task_edit_task_startday"
-			    android:layout_width="match_parent"
-			    android:layout_height="wrap_content"
-			    android:background="@null"
-			    android:layout_margin="10dp"/>
-			<View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/titlebar_bg"/>
-			
-			<TextView android:id="@id/day_task_edit_task_content"
-			    android:layout_width="match_parent"
-			    android:layout_height="wrap_content"
-			    android:background="@null"
-			    android:layout_margin="10dp"/>
-			<View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/titlebar_bg"/>
-			
-		    <TextView android:id="@id/day_task_edit_task_needs"
-			    android:layout_width="match_parent"
-			    android:layout_height="wrap_content"
-			    android:background="@null"
-			    android:layout_margin="10dp"/>
-			<View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/titlebar_bg"/>
-			
-			<TextView android:id="@id/day_task_edit_task_endday"
-			    android:layout_width="match_parent"
-			    android:layout_height="wrap_content"
-			    android:background="@null"
-			    android:layout_margin="10dp"/>
-			<View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/titlebar_bg"/>
-			
 		</LinearLayout>
 		
 	</ScrollView>

@@ -19,6 +19,7 @@ import com.qing.mytask.model.Task;
 import com.qing.saq.anno.CView;
 import com.qing.saq.anno.Event;
 import com.qing.saq.utils.DateUtils;
+import com.qing.saq.utils.StringUtils;
 
 public class DayTaskEditActivity extends BaseActivity {
 
@@ -85,6 +86,25 @@ public class DayTaskEditActivity extends BaseActivity {
 		}
 	};
 	
+	@CView(id=R.id.day_task_edit_task_plan)
+	private TextView taskPlanTv;
+	
+	@CView(id=R.id.day_task_edit_task_plan)
+	private Button taskPlanBt;
+	
+	@Event(name="taskPlanBt")
+	private OnClickListener onTaskPlanBtCL = new OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			Intent intent = new Intent();
+			intent.putExtra("taskId", taskId);
+			intent.putExtra("taskName", getIntent().getStringExtra("taskName"));
+			intent.setClass(getApplicationContext(), TaskPlanEditActivity.class);
+			startActivity(intent);
+		}
+	};
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -92,17 +112,18 @@ public class DayTaskEditActivity extends BaseActivity {
 		getSaq().registe(this, getWindow().getDecorView()).init();
 		
 		taskId = getIntent().getStringExtra("taskId");
-		taskNameTv.setText(getIntent().getStringExtra("taskName"));
+		taskNameTv.setText(StringUtils.ifNull(getIntent().getStringExtra("taskName"), ""));
 		DayTask dayTask = dao.queryDayTask(taskId, null);
 		if(dayTask != null) {
-			taskDayContentEt.setText(dayTask.getContent());
+			taskDayContentEt.setText(StringUtils.ifNull(dayTask.getContent(), ""));
+			taskPlanTv.setText(StringUtils.ifNull(dayTask.getPlan(), null));
 		}
 		
 		// 初始化任务信息
 		Task task = new TaskDao().queryById(taskId);
-		taskStartdayTv.setText(DateUtils.formatDate(task.getStartday(), null));
-		taskEnddayTv.setText(DateUtils.formatDate(task.getEndday(), null));
-		taskContentTv.setText(task.getContent());
-		taskNeedsTv.setText(task.getNeeds());
+		taskStartdayTv.setText(StringUtils.ifNull(DateUtils.formatDate(task.getStartday(), null), ""));
+		taskEnddayTv.setText(StringUtils.ifNull(DateUtils.formatDate(task.getEndday(), null), ""));
+		taskContentTv.setText(StringUtils.ifNull(task.getContent(), ""));
+		taskNeedsTv.setText(StringUtils.ifNull(task.getNeeds(), ""));
 	}
 }

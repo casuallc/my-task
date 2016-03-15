@@ -47,7 +47,7 @@ public class TaskDao implements TaskDaoI {
 		SQLBean<Task> bean = new SQLBean<Task>(Task.class);
 		bean.getSql().append("INSERT INTO TASK(ID, NAME, STARTDAY, CONTENT, NEEDS, ENDDAY, CREATE_TIME, STATUS) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 		bean.addArgs(task.getId()).addArgs(task.getName()).addArgs(task.getStartday()).addArgs(task.getContent());
-		bean.addArgs(task.getNeeds()).addArgs(format.format(new Date())).addArgs(0);
+		bean.addArgs(task.getNeeds()).addArgs(task.getEndday()).addArgs(format.format(new Date())).addArgs(0);
 		sql.add(bean);
 		return task;
 	}
@@ -61,4 +61,5 @@ public class TaskDao implements TaskDaoI {
 		sql.update(bean);
 		return task;
 	}
+
 }

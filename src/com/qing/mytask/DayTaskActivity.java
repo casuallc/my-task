@@ -22,6 +22,7 @@ import com.qing.saq.anno.Event;
 import com.qing.saq.anno.EventType;
 import com.qing.saq.jdbc.SQL;
 import com.qing.saq.utils.DateUtils;
+import com.qing.saq.utils.StringUtils;
 
 public class DayTaskActivity extends BaseActivity {
 	
@@ -146,8 +147,8 @@ public class DayTaskActivity extends BaseActivity {
 			} else {
 				holder = (ViewHolder) convertView.getTag();
 			}
-			holder.name.setText(list.get(position).getName());
-			holder.startday.setText(DateUtils.formatDate(list.get(position).getStartday(), null));
+			holder.name.setText(StringUtils.ifNull(list.get(position).getName(), ""));
+			holder.startday.setText(StringUtils.ifNull(DateUtils.formatDate(list.get(position).getStartday(), null), ""));
 			holder.dayscost.setText(list.get(position).getDayscost()+"");
 			
 			return convertView;

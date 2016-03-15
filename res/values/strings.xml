@@ -14,5 +14,13 @@
     <string name="task_needs">所需物品</string>
     
     <string name="taskDetailInfo">以下为任务详细信息</string>
+    
+    <string name="today">今天</string>
+    <string name="day1after">一天后</string>
+    <string name="day2after">两天后</string>
+    <string name="day3after">三天后</string>
+    <string name="day4after">四天后</string>
+    <string name="day5after">五天后</string>
+    <string name="day6after">六天后</string>
 
 </resources>

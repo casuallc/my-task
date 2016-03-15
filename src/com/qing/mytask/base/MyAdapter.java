@@ -1,29 +1,28 @@
 package com.qing.mytask.base;
 
-import android.view.View;
-import android.view.ViewGroup;
+import java.util.List;
+
+import android.content.Context;
 import android.widget.BaseAdapter;
 
-public class MyAdapter extends BaseAdapter {
+public abstract class MyAdapter<T> extends BaseAdapter {
+	protected List<T> dataList;
+	
+	protected Context context;
 
 	@Override
 	public int getCount() {
-		return 0;
+		return dataList.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return null;
+		return dataList.get(position);
 	}
 
 	@Override
 	public long getItemId(int position) {
 		return position;
-	}
-
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		return null;
 	}
 
 }

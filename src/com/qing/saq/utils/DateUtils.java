@@ -46,6 +46,13 @@ public class DateUtils {
 		return c.getTime();
 	}
 	
+	public static String afterDate(Date date, int days, String pattern) {
+		Date d = afterDate(date, days);
+		if(pattern == null)
+			pattern = "yyyyMMdd";
+		return new SimpleDateFormat(pattern, Locale.ENGLISH).format(d);
+	}
+	
 	public static String formatDate(long date, String pattern) {
 		if(pattern == null)
 			pattern = "yyyy-MM-dd";

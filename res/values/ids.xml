@@ -24,7 +24,6 @@
     <item type="id" name="day_task_task_endday"></item>
     <item type="id" name="day_task_refresh"></item>
     
-    
     <item type="id" name="day_task_edit_task_name"></item>
     <item type="id" name="day_task_edit_task_daycontent"></item>
     <item type="id" name="day_task_edit_complete"></item>
@@ -34,6 +33,7 @@
     <item type="id" name="day_task_edit_task_content"></item>
     <item type="id" name="day_task_edit_per_task_hist"></item>
     <item type="id" name="day_task_edit_titlebar"></item>
+    <item type="id" name="day_task_edit_task_plan"></item>
     
     
     <item type="id" name="title_bar_name"></item>
@@ -41,4 +41,19 @@
     <item type="id" name="per_task_hist_task_name"></item>
     <item type="id" name="per_task_hist_daytasklist"></item>
     <item type="id" name="per_task_hist_daytaskcontent"></item>
+    <item type="id" name="per_task_hist_daytaskplan"></item>
+    <item type="id" name="per_task_hist_planlist"></item>
+    <item type="id" name="per_task_hist_completelist"></item>
+    
+    <item type="id" name="task_plan_edit_task_name"></item>
+    <item type="id" name="task_plan_edit_plan_after0"></item>
+    <item type="id" name="task_plan_edit_plan_after1"></item>
+    <item type="id" name="task_plan_edit_plan_after2"></item>
+    <item type="id" name="task_plan_edit_plan_after3"></item>
+    <item type="id" name="task_plan_edit_plan_after4"></item>
+    <item type="id" name="task_plan_edit_plan_after5"></item>
+    <item type="id" name="task_plan_edit_plan_after6"></item>
+    <item type="id" name="task_plan_edit_titlebar"></item>
+    <item type="id" name="task_plan_edit_save"></item>
+    
 </resources>
