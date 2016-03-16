@@ -28,6 +28,7 @@ public class SQL implements SQLI {
 	public void open() {
 		createSql.add("CREATE TABLE TASK (ID VARCHAR(32), NAME VARCHAR(100), STARTDAY BIGINT, CONTENT TEXT, NEEDS VARCHAR(200), ENDDAY BIGINT, CREATE_TIME BIGINT, STATUS INT)");
 		createSql.add("CREATE TABLE DAY_TASK (ID VARCHAR(32), TASK_ID VARCHAR(32), CONTENT TEXT, DAY BIGINT, PLAN TEXT)");
+		createSql.add("CREATE TABLE TASK_DELAY (ID VARCHAR(32), TASK_ID VARCHAR(32), REASON TEXT, DAY BIGINT)");
 		
 		SQLiteOpenHelper helper = new SQLiteOpenHelper(context, "mytask.db", null, 1) {
 			
@@ -106,7 +107,7 @@ public class SQL implements SQLI {
 				T obj = clazz.newInstance();
 				for(int i=0; i<fields.length; i++) {
 					Field f = fields[i];
-					int index = c.getColumnIndex(f.getName().toUpperCase(Locale.ENGLISH));
+					int index = c.getColumnIndex(transformFieldName(f.getName()).toUpperCase(Locale.ENGLISH));
 					if(index != -1) {
 						Object value = null;
 						Class type = f.getType();
@@ -126,5 +127,17 @@ public class SQL implements SQLI {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	String transformFieldName(String name) {
+		StringBuilder sb = new StringBuilder();
+		char array[] = name.toCharArray();
+		for(char c : array) {
+			if(c > 'A' && c < 'Z') {
+				sb.append("_");
+			}
+			sb.append(c);
+		}
+		return sb.toString();
 	}
 }

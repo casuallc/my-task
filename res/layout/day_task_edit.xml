@@ -11,6 +11,13 @@
         android:id="@id/day_task_edit_titlebar"
         android:layout_width="match_parent"
         android:layout_height="50dp">
+        <Button android:id="@id/day_task_edit_task_done"
+	        android:layout_width="wrap_content"
+	        android:layout_height="match_parent"
+	        android:text="@string/complete"
+	        android:layout_marginStart="10dp"
+	        android:gravity="center"/>
+        
         <TextView android:id="@id/day_task_edit_task_name"
 		    android:layout_width="match_parent"
 		    android:layout_height="30dp"
@@ -20,18 +27,18 @@
 		    android:gravity="center"/>
         
         <Button android:id="@id/day_task_edit_per_task_hist"
-	        android:layout_width="50dp"
+	        android:layout_width="wrap_content"
 	        android:layout_height="match_parent"
+	        android:text="@string/task_day_hist"
 	        android:layout_toStartOf="@id/day_task_edit_task_plan"
-	        android:gravity="center"
-	        android:background="@drawable/add"/>
+	        android:gravity="center"/>
         
         <Button android:id="@id/day_task_edit_task_plan"
-	        android:layout_width="50dp"
+	        android:layout_width="wrap_content"
 	        android:layout_height="match_parent"
+	        android:text="@string/task_day_plan"
 	        android:gravity="center"
-	        android:layout_alignParentEnd="true"
-	        android:background="@drawable/add"/>
+	        android:layout_alignParentEnd="true"/>
     </RelativeLayout>
     
     <ScrollView android:layout_width="match_parent"
@@ -110,6 +117,24 @@
 			    android:layout_margin="10dp"/>
 			<View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/titlebar_bg"/>
 			
+			<EditText android:id="@id/day_task_edit_delay_reason"
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:background="@null"
+			    android:hint="@string/reason_for_delay"
+			    android:minLines="2"
+			    android:maxLines="20"
+			    android:gravity="top"
+			    android:visibility="gone"
+			    android:layout_margin="10dp"/>
+			<View android:layout_width="match_parent" android:layout_height="2dp" android:background="@color/titlebar_bg"/>
+			
+			<Button android:id="@id/day_task_edit_delay_oneday"
+			    android:layout_width="match_parent"
+			    android:layout_height="50dp"
+			    android:gravity="center"
+			    android:visibility="gone"
+			    android:text="@string/complete"/>
 		</LinearLayout>
 		
 	</ScrollView>

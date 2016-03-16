@@ -11,7 +11,10 @@
     <string name="task_startday">开始日期</string>
     <string name="task_endday">结束日期</string>
     <string name="task_content">内容描述</string>
+    <string name="reason_for_delay">延迟原因</string>
     <string name="task_needs">所需物品</string>
+    <string name="task_day_hist">历史</string>
+    <string name="task_day_plan">计划</string>
     
     <string name="taskDetailInfo">以下为任务详细信息</string>
     

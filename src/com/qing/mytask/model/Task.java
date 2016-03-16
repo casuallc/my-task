@@ -1,9 +1,6 @@
 package com.qing.mytask.model;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 import com.qing.mytask.base.Model;
 import com.qing.saq.utils.DateUtils;
@@ -15,7 +12,7 @@ public class Task extends Model {
 	private long startday;
 	private long endday;
 	private String content;
-	private int status;
+	private int status; // 10 已完成
 	private String needs;
 	private long dayscost;
 	

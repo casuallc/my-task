@@ -66,4 +66,8 @@ public class DateUtils {
 		String d = day < 10 ? "0"+day : ""+day;
 		return pattern.replaceFirst("yyyy", y).replaceFirst("MM", m).replaceFirst("dd", d);
 	}
+	
+	public static Date now() {
+		return new Date();
+	}
 }
