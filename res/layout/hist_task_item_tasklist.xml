@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <TextView android:id="@id/hist_task_task_name"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="@string/app_name"/>
+    
+    <View android:id="@id/hist_task_line_0" android:layout_width="match_parent" android:layout_below="@id/hist_task_task_name" android:layout_height="2dp" android:background="@color/titlebar_bg"></View>
+    
+    <TextView 
+        android:id="@id/hist_task_task_startday_"
+        android:layout_below="@id/hist_task_line_0"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="@string/startdate"/>
+    
+    <TextView android:id="@id/hist_task_task_startday"
+        android:layout_width="match_parent"
+        android:layout_toEndOf="@id/hist_task_task_startday_"
+        android:layout_below="@id/hist_task_line_0"
+        android:layout_height="30dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:gravity="center_vertical"/>
+    
+    <View android:id="@id/hist_task_line_1" android:layout_width="match_parent" android:layout_below="@id/hist_task_task_startday" android:layout_height="2dp" android:background="@color/titlebar_bg"></View>
+    
+    <TextView 
+        android:id="@id/hist_task_task_endday_"
+        android:layout_below="@id/hist_task_line_1"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="@string/enddate"/>
+    
+    <TextView android:id="@id/hist_task_task_endday"
+        android:layout_width="match_parent"
+        android:layout_toEndOf="@id/hist_task_task_endday_"
+        android:layout_below="@id/hist_task_line_1"
+        android:layout_height="30dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:gravity="center_vertical" />
+    
+    <View android:id="@id/hist_task_line_2" android:layout_width="match_parent" android:layout_below="@id/hist_task_task_endday" android:layout_height="2dp" android:background="@color/titlebar_bg"></View>
+    
+    <TextView 
+        android:id="@id/hist_task_task_doneday_"
+        android:layout_below="@id/hist_task_line_2"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="@string/donedate"/>
+    
+    <TextView android:id="@id/hist_task_task_doneday"
+        android:layout_width="match_parent"
+        android:layout_toEndOf="@id/hist_task_task_startday_"
+        android:layout_below="@id/hist_task_line_2"
+        android:layout_height="30dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:gravity="center_vertical"/>
+    
+	<View android:id="@id/hist_task_line_3" android:layout_width="match_parent" android:layout_below="@id/hist_task_task_doneday" android:layout_height="2dp" android:background="@color/titlebar_bg"></View>
+</RelativeLayout>

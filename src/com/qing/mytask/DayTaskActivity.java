@@ -72,21 +72,20 @@ public class DayTaskActivity extends BaseActivity {
 		}
 	};
 	
-	@CView(id=R.id.day_task_refresh)
-	private Button taskRefreshBt;
-	@Event(name="taskRefreshBt")
-	private OnClickListener onTaskRefreshBtCL = new OnClickListener() {
+	@CView(id=R.id.day_task_hist_task)
+	private Button histTaskBt;
+	@Event(name="histTaskBt")
+	private OnClickListener onHistTaskBtCL = new OnClickListener() {
 		
 		@Override
 		public void onClick(View v) {
-			taskList = dao.list(new Task());
-			tasklistAdapter.setData(taskList);
-			tasklistAdapter.notifyDataSetChanged();
+			Intent intent = new Intent();
+			intent.setClass(DayTaskActivity.this, HistTaskActivity.class);
+			startActivity(intent);
 		}
 	};
-	
-	//data
 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

@@ -27,6 +27,7 @@
         <activity android:name="com.qing.mytask.DayTaskEditActivity"></activity>
         <activity android:name="com.qing.mytask.PerTaskHistActivity"></activity>
         <activity android:name="com.qing.mytask.TaskPlanEditActivity"></activity>
+        <activity android:name="com.qing.mytask.HistTaskActivity"></activity>
     </application>
 
 </manifest>

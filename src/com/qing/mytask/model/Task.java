@@ -15,6 +15,15 @@ public class Task extends Model {
 	private int status; // 10 已完成
 	private String needs;
 	private long dayscost;
+	private long doneday;
+	
+	public void setDoneday(long doneday) {
+		this.doneday = doneday;
+	}
+	
+	public long getDoneday() {
+		return doneday;
+	}
 	
 	public String getId() {
 		return id;

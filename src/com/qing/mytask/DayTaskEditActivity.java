@@ -197,6 +197,7 @@ public class DayTaskEditActivity extends BaseActivity {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
+				task.setDoneday(Long.valueOf(DateUtils.formatDate(null, null)));
 				taskDao.taskDone(task);
 				Toast.makeText(DayTaskEditActivity.this, "完成了", Toast.LENGTH_SHORT).show();
 				

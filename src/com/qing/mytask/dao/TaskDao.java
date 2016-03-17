@@ -103,9 +103,17 @@ public class TaskDao implements TaskDaoI {
 	 */
 	public void taskDone(Task task) {
 		SQLBean<Task> bean = new SQLBean<Task>(Task.class);
-		bean.getSql().append("UPDATE TASK SET STATUS=? WHERE ID = ?");
-		bean.addArgs(10).addArgs(task.getId());
+		bean.getSql().append("UPDATE TASK SET STATUS=?, DONEDAY=? WHERE ID = ?");
+		bean.addArgs(10).addArgs(task.getDoneday()).addArgs(task.getId());
 		sql.update(bean);
 	}
 
+	/**
+	 * @return tasks that have done
+	 */
+	public List<Task> listHistTask() {
+		SQLBean<Task> bean = new SQLBean<Task>(Task.class);
+		bean.getSql().append("SELECT ID, NAME, STARTDAY, CONTENT, NEEDS, ENDDAY, CREATE_TIME, DONEDAY FROM TASK WHERE STATUS = '10'");
+		return sql.list(bean);
+	}
 }
